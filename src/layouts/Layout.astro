@@ -1,41 +1,18 @@
 ---
-import { client, telHref, url, siteUrl, base } from '../lib/client';
+import { client, telHref, siteUrl, base } from '../lib/client';
+import { localBusinessSchema } from '../lib/schema';
 
 interface Props {
   title: string;
   description: string;
-  canonical?: string;
 }
 
 const { title, description } = Astro.props;
 const { address } = client;
 
-// Canonical URL: actual generated path, with base path preserved.
 let pagePath = Astro.url.pathname;
 if (base && pagePath.startsWith(base)) pagePath = pagePath.slice(base.length);
 const fullCanonical = `${siteUrl}${pagePath}`;
-
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': 'HVACBusiness',
-  name: client.businessName,
-  image: `${siteUrl}/og-image.jpg`,
-  telephone: client.phone,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: address.street,
-    addressLocality: address.city,
-    addressRegion: address.state,
-    postalCode: address.postalCode,
-    addressCountry: 'US',
-  },
-  url: siteUrl,
-  priceRange: '$$',
-  openingHoursSpecification: [
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '07:00', closes: '19:00' },
-    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Saturday'], opens: '08:00', closes: '17:00' },
-  ],
-};
 ---
 
 <!doctype html>
@@ -63,22 +40,20 @@ const schema = {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={`${siteUrl}/og-image.jpg`} />
 
-    <!-- PWA -->
-    <link rel="manifest" href={url("/manifest.webmanifest")} />
+    <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content={client.businessName} />
-    <link rel="apple-touch-icon" href={url("/icon-192.svg")} />
+    <link rel="apple-touch-icon" href="/icon-192.svg" />
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" />
 
-    <link rel="icon" type="image/svg+xml" href={url("/favicon.svg")} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
 
     <script>
       if ('serviceWorker' in navigator) {
@@ -92,7 +67,6 @@ const schema = {
   <body class="bg-white text-brand-900 antialiased">
     <slot />
 
-    <!-- Sticky mobile call button — respects safe area -->
     <a
       href={telHref}
       class="fixed left-4 right-4 md:hidden z-50 flex items-center justify-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold py-4 rounded-xl shadow-2xl shadow-accent-500/30 transition"

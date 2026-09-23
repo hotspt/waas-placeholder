@@ -3,9 +3,19 @@ import { siteUrl } from './client';
 
 const { address } = client;
 
+const schemaTypeByIndustry: Record<string, string> = {
+  HVAC: 'HVACBusiness',
+  Plumbing: 'Plumber',
+  Roofing: 'RoofingContractor',
+  Electrician: 'Electrician',
+  WebAgency: 'ProfessionalService',
+};
+
+const schemaType = schemaTypeByIndustry[client.industry] || 'LocalBusiness';
+
 export const localBusinessSchema = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': schemaType,
   '@id': `${siteUrl}/#business`,
   name: client.businessName,
   telephone: client.phone,
