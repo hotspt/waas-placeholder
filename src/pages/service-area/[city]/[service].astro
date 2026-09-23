@@ -1,0 +1,174 @@
+---
+import '../../../styles/global.css';
+import Layout from '../../../layouts/Layout.astro';
+import Nav from '../../../components/Nav.astro';
+import Footer from '../../../components/Footer.astro';
+import { client, telHref, url } from '../../../lib/client';
+import { serviceSchema, breadcrumbSchema } from '../../../lib/schema';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const city of client.serviceAreas) {
+    for (const svc of client.services) {
+      paths.push({
+        params: {
+          city: city.toLowerCase().replace(/\s+/g, '-'),
+          service: svc.href.replace('/services/', ''),
+        },
+        props: { city, svc },
+      });
+    }
+  }
+  return paths;
+}
+
+const { city, svc } = Astro.props;
+const citySlug = city.toLowerCase().replace(/\s+/g, '-');
+const svcSlug = svc.href.replace('/services/', '');
+
+const service = serviceSchema({
+  name: `${svc.title} in ${city}`,
+  description: `${svc.desc} Serving ${city}, ${client.address.state}.`,
+  url: `/service-area/${citySlug}/${svcSlug}`,
+});
+
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Service Areas', url: '/service-area' },
+  { name: city, url: `/service-area/${citySlug}` },
+  { name: svc.title, url: `/service-area/${citySlug}/${svcSlug}` },
+]);
+---
+
+<Layout
+  title={`${svc.title} in ${city}, ${client.address.state} | ${client.businessName}`}
+  description={`${svc.title} in ${city}, ${client.address.state}. ${svc.desc.split(".")[0]}. Same-day service from ${client.businessName}. Call ${client.phone}.`}
+  canonical={`/service-area/${citySlug}/${svcSlug}`}
+>
+  <Nav />
+
+  <script type="application/ld+json" set:html={JSON.stringify(service)} />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+
+  <section class="bg-brand-900 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute -top-40 right-0 w-96 h-96 rounded-full bg-accent-500 blur-3xl"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-5 md:px-6 py-14 md:py-24 grid md:grid-cols-3 gap-10 md:gap-12 items-center">
+      <div class="md:col-span-2">
+        <nav class="text-brand-300 text-sm mb-4">
+          <a href={url("/")} class="hover:text-accent-400">Home</a>
+          <span class="mx-2">/</span>
+          <a href={url(`/service-area/${citySlug}`)} class="hover:text-accent-400">{city}</a>
+          <span class="mx-2">/</span>
+          <span class="text-white">{svc.title}</span>
+        </nav>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          {svc.title} in {city}, {client.address.state}
+        </h1>
+        <p class="mt-4 md:mt-6 text-base md:text-lg text-brand-200 leading-relaxed">
+          {svc.desc}
+        </p>
+        <div class="mt-7 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4">
+          <a
+            href={telHref}
+            class="inline-flex items-center justify-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold px-6 md:px-8 py-4 rounded-xl transition shadow-xl shadow-accent-500/30 active:scale-[0.98]"
+          >
+            Call {client.phone}
+          </a>
+          <a
+            href={url("/contact")}
+            class="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white font-bold px-6 md:px-8 py-4 rounded-xl transition border border-white/20 active:scale-[0.98]"
+          >
+            Request a Quote
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+        <div class="text-white font-bold text-lg mb-4">Serving {city}</div>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start gap-3">
+            <span class="text-accent-500 mt-0.5">▸</span>
+            <span class="text-brand-200">Same-day availability</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-accent-500 mt-0.5">▸</span>
+            <span class="text-brand-200">Licensed &amp; insured in {client.address.state}</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-accent-500 mt-0.5">▸</span>
+            <span class="text-brand-200">Upfront pricing, no hidden fees</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-accent-500 mt-0.5">▸</span>
+            <span class="text-brand-200">Local to {client.address.city}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-20">
+    <div class="max-w-4xl mx-auto px-5 md:px-6">
+      <h2 class="text-2xl md:text-4xl font-extrabold text-brand-900 tracking-tight mb-6">
+        {svc.title} for {city} homeowners
+      </h2>
+      <div class="space-y-4 text-base md:text-lg text-brand-700 leading-relaxed">
+        <p>
+          If you live in {city} and you need {svc.title.toLowerCase()}, you are in the right place.
+          {client.businessName} has been serving {city} and the surrounding {client.address.city} area
+          for years, and we know the local homes, the local weather, and the local problems that
+          come with them.
+        </p>
+        <p>
+          {svc.desc}
+        </p>
+        <p>
+          We show up when we say we will, give you an honest assessment, and charge what we quote.
+          No upsells, no surprise fees, and no runaround. If it can be fixed, we fix it. If it needs
+          replacing, we tell you straight and give you options.
+        </p>
+      </div>
+
+      <h2 class="text-2xl md:text-3xl font-extrabold text-brand-900 tracking-tight mt-12 md:mt-16 mb-6">
+        Other services in {city}
+      </h2>
+      <div class="grid sm:grid-cols-2 gap-3">
+        {client.services.filter(s => s.href !== svc.href).slice(0, 6).map(other => (
+          <a
+            href={url(`/service-area/${citySlug}/${other.href.replace('/services/', '')}`)}
+            class="flex items-center justify-between bg-brand-50 hover:bg-accent-500 hover:text-white border border-brand-100 rounded-xl px-5 py-4 transition group"
+          >
+            <span class="font-semibold text-sm md:text-base">{other.title} in {city}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-900 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent-500 blur-3xl"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-5 md:px-6 py-14 md:py-20 text-center">
+      <h2 class="text-2xl md:text-4xl font-extrabold text-white tracking-tight">
+        {svc.title} in {city} — call today
+      </h2>
+      <p class="mt-4 text-base md:text-lg text-brand-200 max-w-2xl mx-auto">
+        We answer the phone and can usually be at your {city} home the same day.
+      </p>
+      <a
+        href={telHref}
+        class="mt-8 inline-flex items-center justify-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold px-8 py-4 rounded-xl transition shadow-xl shadow-accent-500/30 text-base md:text-lg active:scale-[0.98]"
+      >
+        Call {client.phone}
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

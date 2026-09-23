@@ -1,0 +1,387 @@
+{
+  "HVAC": {
+    "tagline": "most trusted HVAC experts",
+    "trustPoints": [
+      {
+        "label": "Same-day service",
+        "detail": "Most calls handled today"
+      },
+      {
+        "label": "Licensed & insured",
+        "detail": "Full coverage"
+      },
+      {
+        "label": "Upfront pricing",
+        "detail": "No hidden fees, ever"
+      },
+      {
+        "label": "Satisfaction guaranteed",
+        "detail": "Or we make it right"
+      }
+    ],
+    "stats": [
+      {
+        "value": "15+",
+        "label": "Years in business"
+      },
+      {
+        "value": "10,000+",
+        "label": "Systems serviced"
+      },
+      {
+        "value": "24/7",
+        "label": "Emergency response"
+      },
+      {
+        "value": "100%",
+        "label": "Satisfaction guarantee"
+      }
+    ],
+    "services": [
+      {
+        "title": "AC Repair",
+        "desc": "Same-day fixes for any brand. We diagnose fast and get your cool air back on.",
+        "icon": "snow",
+        "href": "/services/ac-repair"
+      },
+      {
+        "title": "Heating & Furnace",
+        "desc": "Expert furnace and heat pump service when the temperature drops.",
+        "icon": "flame",
+        "href": "/services/heating"
+      },
+      {
+        "title": "System Installation",
+        "desc": "New AC and heating installs done right, with warranties you can trust.",
+        "icon": "wrench",
+        "href": "/services/installation"
+      },
+      {
+        "title": "Maintenance Plans",
+        "desc": "Seasonal tune-ups that keep your system efficient and your bills low.",
+        "icon": "shield",
+        "href": "/services/maintenance"
+      },
+      {
+        "title": "Indoor Air Quality",
+        "desc": "Filters, purifiers, and humidity control for a healthier home.",
+        "icon": "wind",
+        "href": "/services/air-quality"
+      },
+      {
+        "title": "Emergency Service",
+        "desc": "24/7 emergency response when your system fails at the worst time.",
+        "icon": "clock",
+        "href": "/services/emergency"
+      }
+    ]
+  },
+  "Plumbing": {
+    "tagline": "most trusted plumbing experts",
+    "trustPoints": [
+      {
+        "label": "Same-day service",
+        "detail": "Most calls handled today"
+      },
+      {
+        "label": "Licensed & insured",
+        "detail": "Full coverage"
+      },
+      {
+        "label": "Upfront pricing",
+        "detail": "No hidden fees, ever"
+      },
+      {
+        "label": "Satisfaction guaranteed",
+        "detail": "Or we make it right"
+      }
+    ],
+    "stats": [
+      {
+        "value": "15+",
+        "label": "Years in business"
+      },
+      {
+        "value": "10,000+",
+        "label": "Jobs completed"
+      },
+      {
+        "value": "24/7",
+        "label": "Emergency response"
+      },
+      {
+        "value": "100%",
+        "label": "Satisfaction guarantee"
+      }
+    ],
+    "services": [
+      {
+        "title": "Emergency Plumbing",
+        "desc": "Burst pipes, flooding, no hot water — we respond fast, 24/7.",
+        "icon": "clock",
+        "href": "/services/emergency"
+      },
+      {
+        "title": "Drain Cleaning",
+        "desc": "Clogged drains cleared fast with professional-grade equipment.",
+        "icon": "wrench",
+        "href": "/services/drain-cleaning"
+      },
+      {
+        "title": "Water Heater Repair",
+        "desc": "Repair and installation for tank and tankless water heaters.",
+        "icon": "flame",
+        "href": "/services/water-heaters"
+      },
+      {
+        "title": "Leak Detection",
+        "desc": "We find hidden leaks before they turn into expensive damage.",
+        "icon": "shield",
+        "href": "/services/leak-detection"
+      },
+      {
+        "title": "Repiping",
+        "desc": "Whole-home repiping with modern, durable materials.",
+        "icon": "wind",
+        "href": "/services/repiping"
+      },
+      {
+        "title": "Fixture Installation",
+        "desc": "Sinks, toilets, faucets, and appliances installed right.",
+        "icon": "snow",
+        "href": "/services/fixtures"
+      }
+    ]
+  },
+  "Roofing": {
+    "tagline": "most trusted roofing experts",
+    "trustPoints": [
+      {
+        "label": "Free inspections",
+        "detail": "No-cost roof assessments"
+      },
+      {
+        "label": "Licensed & insured",
+        "detail": "Full coverage"
+      },
+      {
+        "label": "Insurance claims help",
+        "detail": "We work with your adjuster"
+      },
+      {
+        "label": "Lifetime workmanship",
+        "detail": "Warranty on every install"
+      }
+    ],
+    "stats": [
+      {
+        "value": "15+",
+        "label": "Years in business"
+      },
+      {
+        "value": "5,000+",
+        "label": "Roofs installed"
+      },
+      {
+        "value": "24/7",
+        "label": "Storm response"
+      },
+      {
+        "value": "100%",
+        "label": "Satisfaction guarantee"
+      }
+    ],
+    "services": [
+      {
+        "title": "Roof Replacement",
+        "desc": "Full roof replacement with premium materials and lifetime warranties.",
+        "icon": "shield",
+        "href": "/services/replacement"
+      },
+      {
+        "title": "Roof Repair",
+        "desc": "Fast, reliable repairs for leaks, missing shingles, and storm damage.",
+        "icon": "wrench",
+        "href": "/services/repair"
+      },
+      {
+        "title": "Storm Damage",
+        "desc": "Emergency tarping and full restoration after hail and wind storms.",
+        "icon": "clock",
+        "href": "/services/storm-damage"
+      },
+      {
+        "title": "Inspections",
+        "desc": "Free roof inspections with a detailed written report.",
+        "icon": "snow",
+        "href": "/services/inspections"
+      },
+      {
+        "title": "Gutters",
+        "desc": "Seamless gutter installation and cleaning to protect your foundation.",
+        "icon": "wind",
+        "href": "/services/gutters"
+      },
+      {
+        "title": "Insurance Claims",
+        "desc": "We handle the paperwork and work directly with your insurance company.",
+        "icon": "flame",
+        "href": "/services/insurance"
+      }
+    ]
+  },
+  "Electrician": {
+    "tagline": "most trusted electricians",
+    "trustPoints": [
+      {
+        "label": "Same-day service",
+        "detail": "Most calls handled today"
+      },
+      {
+        "label": "Licensed & insured",
+        "detail": "Master electrician on staff"
+      },
+      {
+        "label": "Upfront pricing",
+        "detail": "No hidden fees, ever"
+      },
+      {
+        "label": "Code compliant",
+        "detail": "Permitted and inspected"
+      }
+    ],
+    "stats": [
+      {
+        "value": "15+",
+        "label": "Years in business"
+      },
+      {
+        "value": "8,000+",
+        "label": "Projects completed"
+      },
+      {
+        "value": "24/7",
+        "label": "Emergency response"
+      },
+      {
+        "value": "100%",
+        "label": "Satisfaction guarantee"
+      }
+    ],
+    "services": [
+      {
+        "title": "Emergency Electrical",
+        "desc": "Power outages, sparks, burning smells — call us immediately.",
+        "icon": "clock",
+        "href": "/services/emergency"
+      },
+      {
+        "title": "Panel Upgrades",
+        "desc": "Modern electrical panels for safety and capacity.",
+        "icon": "shield",
+        "href": "/services/panels"
+      },
+      {
+        "title": "Wiring & Rewiring",
+        "desc": "Whole-home rewiring for older properties.",
+        "icon": "wrench",
+        "href": "/services/wiring"
+      },
+      {
+        "title": "EV Charger Install",
+        "desc": "Level 2 home EV charger installation.",
+        "icon": "wind",
+        "href": "/services/ev-chargers"
+      },
+      {
+        "title": "Lighting",
+        "desc": "Indoor, outdoor, and landscape lighting design and install.",
+        "icon": "snow",
+        "href": "/services/lighting"
+      },
+      {
+        "title": "Generators",
+        "desc": "Standby generator installation and service.",
+        "icon": "flame",
+        "href": "/services/generators"
+      }
+    ]
+  },
+  "WebAgency": {
+    "tagline": "most trusted web design partner for local businesses",
+    "trustPoints": [
+      {
+        "label": "100/100 SEO score",
+        "detail": "Technically perfect sites"
+      },
+      {
+        "label": "One-command deploy",
+        "detail": "Live in under 60 seconds"
+      },
+      {
+        "label": "Monthly blog content",
+        "detail": "Keeps you ranking all year"
+      },
+      {
+        "label": "Flat monthly pricing",
+        "detail": "No contracts, no surprises"
+      }
+    ],
+    "stats": [
+      {
+        "value": "100/100",
+        "label": "Avg. SEO audit score"
+      },
+      {
+        "value": "80+",
+        "label": "Pages per client site"
+      },
+      {
+        "value": "30 days",
+        "label": "Signup to live"
+      },
+      {
+        "value": "24/7",
+        "label": "Uptime + free SSL"
+      }
+    ],
+    "services": [
+      {
+        "title": "Website Design",
+        "desc": "A beautiful, fast, mobile-first website built to convert visitors into paying customers.",
+        "icon": "wrench",
+        "href": "/services/web-design"
+      },
+      {
+        "title": "Local SEO",
+        "desc": "80+ pages targeting every service in every city you serve. Built to dominate local search.",
+        "icon": "shield",
+        "href": "/services/local-seo"
+      },
+      {
+        "title": "Monthly Blog Content",
+        "desc": "Fresh, professionally written posts every month to keep Google interested in your site.",
+        "icon": "wind",
+        "href": "/services/content"
+      },
+      {
+        "title": "Google Business Profile",
+        "desc": "Setup, optimization, and ongoing management of your most important local asset.",
+        "icon": "flame",
+        "href": "/services/gbp"
+      },
+      {
+        "title": "Analytics & Reporting",
+        "desc": "A monthly report showing exactly how many calls and leads your site generated.",
+        "icon": "snow",
+        "href": "/services/analytics"
+      },
+      {
+        "title": "Ongoing Maintenance",
+        "desc": "Updates, backups, security, and any changes you need. We handle everything.",
+        "icon": "clock",
+        "href": "/services/maintenance"
+      }
+    ]
+  }
+}

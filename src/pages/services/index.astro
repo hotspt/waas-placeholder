@@ -1,0 +1,83 @@
+---
+import '../../styles/global.css';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { client, telHref, url } from '../../lib/client';
+import { breadcrumbSchema } from '../../lib/schema';
+
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Services', url: '/services' },
+]);
+---
+
+<Layout
+  title={`Services | ${client.businessName} — ${client.address.city}, ${client.address.state}`}
+  description={`All services offered by ${client.businessName} in ${client.address.city}. ${client.services.map(s => s.title).join(', ')}.`}
+  canonical="/services"
+>
+  <Nav />
+
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+
+  <section class="bg-brand-900 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute -top-40 right-0 w-96 h-96 rounded-full bg-accent-500 blur-3xl"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-5 md:px-6 py-14 md:py-20">
+      <nav class="text-brand-300 text-sm mb-4">
+        <a href={url("/")} class="hover:text-accent-400">Home</a>
+        <span class="mx-2">/</span>
+        <span class="text-white">Services</span>
+      </nav>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight max-w-4xl">
+        Our {client.industry} services in {client.address.city}
+      </h1>
+      <p class="mt-4 md:mt-6 text-base md:text-lg text-brand-200 max-w-2xl">
+        Everything {client.businessName} offers. Click any service to learn more, or call us directly for immediate help.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-20">
+    <div class="max-w-7xl mx-auto px-5 md:px-6">
+      <div class="grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {client.services.map(svc => (
+          <a
+            href={url(svc.href)}
+            class="group bg-white border border-brand-100 hover:border-accent-500 rounded-2xl p-6 md:p-8 transition hover:shadow-xl hover:shadow-brand-900/5 md:hover:-translate-y-1"
+          >
+            <h2 class="text-lg md:text-xl font-bold text-brand-900 mb-2 group-hover:text-accent-500 transition">
+              {svc.title}
+            </h2>
+            <p class="text-brand-600 leading-relaxed text-sm md:text-base">{svc.desc}</p>
+            <div class="mt-5 inline-flex items-center gap-1 text-accent-500 font-semibold text-sm group-hover:gap-2 transition-all">
+              Learn more
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-14 md:mt-20 bg-brand-50 border border-brand-100 rounded-2xl p-8 md:p-12 text-center">
+        <h2 class="text-2xl md:text-3xl font-extrabold text-brand-900 tracking-tight">
+          Not sure what you need?
+        </h2>
+        <p class="mt-3 text-brand-600 max-w-xl mx-auto">
+          Call us and we will diagnose the problem over the phone and give you honest advice.
+        </p>
+        <a
+          href={telHref}
+          class="mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold px-6 md:px-8 py-4 rounded-xl transition shadow-xl shadow-accent-500/30 active:scale-[0.98]"
+        >
+          Call {client.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

@@ -1,0 +1,140 @@
+{
+  "businessName": "PlaceHolder",
+  "tagline": "Bakersfield's most trusted web design partner for local businesses.",
+  "phone": "+1-661-555-0000",
+  "email": "charlesgreen1827@gmail.com",
+  "license": "N/A",
+  "domain": "https://example.com",
+  "industry": "WebAgency",
+  "address": {
+    "street": "123 Main St",
+    "city": "Bakersfield",
+    "state": "CA",
+    "postalCode": "93310"
+  },
+  "stats": [
+    {
+      "value": "100/100",
+      "label": "Avg. SEO audit score"
+    },
+    {
+      "value": "80+",
+      "label": "Pages per client site"
+    },
+    {
+      "value": "30 days",
+      "label": "Signup to live"
+    },
+    {
+      "value": "24/7",
+      "label": "Uptime + free SSL"
+    }
+  ],
+  "trustPoints": [
+    {
+      "label": "100/100 SEO score",
+      "detail": "Technically perfect sites"
+    },
+    {
+      "label": "One-command deploy",
+      "detail": "Live in under 60 seconds"
+    },
+    {
+      "label": "Monthly blog content",
+      "detail": "Keeps you ranking all year"
+    },
+    {
+      "label": "Flat monthly pricing",
+      "detail": "No contracts, no surprises"
+    }
+  ],
+  "services": [
+    {
+      "title": "Website Design",
+      "desc": "A beautiful, fast, mobile-first website built to convert visitors into paying customers.",
+      "icon": "wrench",
+      "href": "/services/web-design"
+    },
+    {
+      "title": "Local SEO",
+      "desc": "80+ pages targeting every service in every city you serve. Built to dominate local search.",
+      "icon": "shield",
+      "href": "/services/local-seo"
+    },
+    {
+      "title": "Monthly Blog Content",
+      "desc": "Fresh, professionally written posts every month to keep Google interested in your site.",
+      "icon": "wind",
+      "href": "/services/content"
+    },
+    {
+      "title": "Google Business Profile",
+      "desc": "Setup, optimization, and ongoing management of your most important local asset.",
+      "icon": "flame",
+      "href": "/services/gbp"
+    },
+    {
+      "title": "Analytics & Reporting",
+      "desc": "A monthly report showing exactly how many calls and leads your site generated.",
+      "icon": "snow",
+      "href": "/services/analytics"
+    },
+    {
+      "title": "Ongoing Maintenance",
+      "desc": "Updates, backups, security, and any changes you need. We handle everything.",
+      "icon": "clock",
+      "href": "/services/maintenance"
+    }
+  ],
+  "testimonials": [
+    {
+      "quote": "Our AC died on the hottest day of the year. They were at our door within two hours and had it running again by dinner. Fair price, no upselling, just honest work.",
+      "name": "Sarah M.",
+      "location": "Round Rock, TX"
+    },
+    {
+      "quote": "I have used three HVAC companies in Austin over the years. This is the only one I trust. They show up on time, explain what is wrong, and charge what they quote.",
+      "name": "David R.",
+      "location": "Austin, TX"
+    },
+    {
+      "quote": "We signed up for their maintenance plan and our energy bill dropped noticeably. The techs are professional and never push you into things you do not need.",
+      "name": "Linda K.",
+      "location": "Cedar Park, TX"
+    }
+  ],
+  "serviceAreas": [
+    "Austin",
+    "Round Rock",
+    "Cedar Park",
+    "Georgetown",
+    "Pflugerville",
+    "Kyle",
+    "Buda",
+    "Leander",
+    "Lakeway",
+    "Manor"
+  ],
+  "navLinks": [
+    {
+      "href": "/",
+      "label": "Home"
+    },
+    {
+      "href": "/services",
+      "label": "Services"
+    },
+    {
+      "href": "/about",
+      "label": "About"
+    },
+    {
+      "href": "/blog",
+      "label": "Blog"
+    },
+    {
+      "href": "/contact",
+      "label": "Contact"
+    }
+  ]
+}

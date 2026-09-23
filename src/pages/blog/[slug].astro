@@ -1,0 +1,106 @@
+---
+import '../../styles/global.css';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, render } from 'astro:content';
+import { client, telHref, url } from '../../lib/client';
+import { breadcrumbSchema } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Blog', url: '/blog' },
+  { name: post.data.title, url: `/blog/${post.id}` },
+]);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+const siteUrl = client.domain;
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  author: { '@type': 'Organization', name: client.businessName },
+  publisher: {
+    '@type': 'Organization',
+    name: client.businessName,
+    url: siteUrl,
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': `${siteUrl}/blog/${post.id}`,
+  },
+};
+---
+
+<Layout
+  title={`${post.data.title} | ${client.businessName}`}
+  description={post.data.description}
+  canonical={`/blog/${post.id}`}
+>
+  <Nav />
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+
+  <section class="bg-brand-900 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute -top-40 right-0 w-96 h-96 rounded-full bg-accent-500 blur-3xl"></div>
+    </div>
+    <div class="relative max-w-3xl mx-auto px-5 md:px-6 py-14 md:py-20">
+      <nav class="text-brand-300 text-sm mb-4">
+        <a href={url("/")} class="hover:text-accent-400">Home</a>
+        <span class="mx-2">/</span>
+        <a href={url("/blog")} class="hover:text-accent-400">Blog</a>
+      </nav>
+      <h1 class="text-2xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+        {post.data.title}
+      </h1>
+      <div class="mt-5 flex items-center gap-3 text-brand-300 text-sm">
+        <span>{formatDate(post.data.pubDate)}</span>
+        <span>·</span>
+        <span>{post.data.author}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-12 md:py-16">
+    <div class="max-w-3xl mx-auto px-5 md:px-6">
+      <article class="blog-content text-brand-800 leading-relaxed">
+        <Content />
+      </article>
+
+      <div class="mt-14 bg-brand-50 border border-brand-100 rounded-2xl p-8 text-center">
+        <h2 class="text-xl md:text-2xl font-extrabold text-brand-900">
+          Need help with this?
+        </h2>
+        <p class="mt-3 text-brand-600 max-w-xl mx-auto">
+          We serve {client.address.city} and surrounding areas. Call us and we'll take care of it.
+        </p>
+        <a
+          href={telHref}
+          class="mt-6 inline-flex items-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold px-6 md:px-8 py-4 rounded-xl transition shadow-xl shadow-accent-500/30 active:scale-[0.98]"
+        >
+          Call {client.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

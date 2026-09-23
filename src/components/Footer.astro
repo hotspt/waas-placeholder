@@ -1,0 +1,49 @@
+---
+import { client, telHref, url } from '../lib/client';
+
+const year = new Date().getFullYear();
+const { address } = client;
+---
+
+<footer class="bg-brand-900 text-brand-100 mt-24">
+  <div class="max-w-7xl mx-auto px-6 py-16 grid gap-12 md:grid-cols-4">
+    <div class="md:col-span-2">
+      <div class="font-extrabold text-2xl text-white mb-4">{client.businessName}</div>
+      <p class="text-brand-200 max-w-md leading-relaxed">
+        Licensed, insured, and trusted by homeowners across {address.city} and surrounding areas.
+        Fast response, honest pricing, and work done right the first time.
+      </p>
+      <div class="mt-6 flex flex-col gap-2 text-sm">
+        <span class="text-brand-300">License # {client.license}</span>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="text-white font-bold mb-4">Contact</h3>
+      <ul class="space-y-2 text-brand-200">
+        <li><a href={telHref} class="hover:text-accent-400 transition">{client.phone}</a></li>
+        <li><a href={`mailto:${client.email}`} class="hover:text-accent-400 transition">{client.email}</a></li>
+        <li class="pt-2">
+          {address.street}<br />
+          {address.city}, {address.state} {address.postalCode}
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <h3 class="text-white font-bold mb-4">Services</h3>
+      <ul class="space-y-2 text-brand-200">
+        {client.services.slice(0, 4).map(svc => (
+          <li><a href={url(svc.href)} class="hover:text-accent-400 transition">{svc.title}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-brand-800">
+    <div class="max-w-7xl mx-auto px-6 py-6 text-sm text-brand-300 flex flex-col md:flex-row justify-between gap-2">
+      <span>© {year} {client.businessName}. All rights reserved.</span>
+      <span>{address.city}, {address.state} · Licensed & Insured</span>
+    </div>
+  </div>
+</footer>

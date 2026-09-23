@@ -1,0 +1,183 @@
+---
+import '../../styles/global.css';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { client, telHref, url } from '../../lib/client';
+import { serviceSchema, breadcrumbSchema } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return client.services.map(svc => ({
+    params: { slug: svc.href.replace('/services/', '') },
+    props: { svc },
+  }));
+}
+
+const { svc } = Astro.props;
+
+const service = serviceSchema({
+  name: svc.title,
+  description: svc.desc,
+  url: svc.href,
+});
+
+const crumbs = breadcrumbSchema([
+  { name: 'Home', url: '/' },
+  { name: 'Services', url: '/services' },
+  { name: svc.title, url: svc.href },
+]);
+
+const commonProblems = [
+  `${svc.title} in an emergency — we respond fast`,
+  `Aging equipment that needs ${svc.title.toLowerCase()}`,
+  `Warning signs that something is about to fail`,
+  `Second opinions on work quoted by another company`,
+];
+
+const whyUs = [
+  `Licensed and insured in ${client.address.state}`,
+  `Same-day availability in most cases`,
+  `Upfront pricing before any work starts`,
+  `Workmanship guaranteed on every job`,
+];
+---
+
+<Layout
+  title={`${svc.title} in ${client.address.city}, ${client.address.state} | ${client.businessName}`}
+  description={`${svc.desc} Serving ${client.address.city} and surrounding areas. Licensed, insured, same-day service. Call ${client.phone}.`}
+  canonical={svc.href}
+>
+  <Nav />
+
+  <script type="application/ld+json" set:html={JSON.stringify(service)} />
+  <script type="application/ld+json" set:html={JSON.stringify(crumbs)} />
+
+  <section class="bg-brand-900 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute -top-40 right-0 w-96 h-96 rounded-full bg-accent-500 blur-3xl"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-5 md:px-6 py-14 md:py-24 grid md:grid-cols-3 gap-10 md:gap-12 items-center">
+      <div class="md:col-span-2">
+        <nav class="text-brand-300 text-sm mb-4">
+          <a href={url("/")} class="hover:text-accent-400">Home</a>
+          <span class="mx-2">/</span>
+          <a href={url("/services")} class="hover:text-accent-400">Services</a>
+          <span class="mx-2">/</span>
+          <span class="text-white">{svc.title}</span>
+        </nav>
+        <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight leading-tight">
+          {svc.title} in {client.address.city}, {client.address.state}
+        </h1>
+        <p class="mt-4 md:mt-6 text-base md:text-lg text-brand-200 leading-relaxed">
+          {svc.desc} Serving {client.address.city} and all surrounding communities.
+        </p>
+        <div class="mt-7 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4">
+          <a
+            href={telHref}
+            class="inline-flex items-center justify-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold px-6 md:px-8 py-4 rounded-xl transition shadow-xl shadow-accent-500/30 active:scale-[0.98]"
+          >
+            Call {client.phone}
+          </a>
+          <a
+            href={url("/contact")}
+            class="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 text-white font-bold px-6 md:px-8 py-4 rounded-xl transition border border-white/20 active:scale-[0.98]"
+          >
+            Request a Quote
+          </a>
+        </div>
+      </div>
+
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8 backdrop-blur-sm">
+        <div class="text-white font-bold text-lg mb-4">Fast facts</div>
+        <ul class="space-y-3 text-sm">
+          <li class="flex items-start gap-3">
+            <span class="text-accent-500 mt-0.5">▸</span>
+            <span class="text-brand-200">Same-day availability</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-accent-500 mt-0.5">▸</span>
+            <span class="text-brand-200">Licensed &amp; insured</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-accent-500 mt-0.5">▸</span>
+            <span class="text-brand-200">Upfront pricing</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-accent-500 mt-0.5">▸</span>
+            <span class="text-brand-200">Serving {client.serviceAreas.length}+ cities</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 md:py-20">
+    <div class="max-w-5xl mx-auto px-5 md:px-6">
+      <h2 class="text-2xl md:text-4xl font-extrabold text-brand-900 tracking-tight mb-6 md:mb-8">
+        When to call us for {svc.title.toLowerCase()}
+      </h2>
+      <div class="prose prose-lg max-w-none text-brand-700">
+        <p class="text-base md:text-lg leading-relaxed">
+          If you are in {client.address.city} or anywhere nearby and you need {svc.title.toLowerCase()},
+          we are ready to help. Our team handles every job with the same care: diagnose the real
+          problem, explain your options clearly, and do the work right the first time.
+        </p>
+        <p class="mt-4 text-base md:text-lg leading-relaxed">
+          We see these situations every day, and we know how to handle them quickly and cleanly.
+          No guesswork, no upselling, no surprise bills.
+        </p>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 gap-4 md:gap-6">
+        {commonProblems.map(p => (
+          <div class="flex items-start gap-3 bg-brand-50 border border-brand-100 rounded-xl p-5">
+            <div class="w-6 h-6 rounded-full bg-accent-500 flex items-center justify-center shrink-0 mt-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <span class="text-brand-800 font-medium text-sm md:text-base">{p}</span>
+          </div>
+        ))}
+      </div>
+
+      <h2 class="text-2xl md:text-4xl font-extrabold text-brand-900 tracking-tight mt-14 md:mt-20 mb-6 md:mb-8">
+        Why {client.address.city} chooses {client.businessName}
+      </h2>
+      <div class="space-y-4">
+        {whyUs.map(w => (
+          <div class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-accent-500 flex items-center justify-center shrink-0 mt-0.5">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+            <span class="text-brand-800 font-medium text-base md:text-lg">{w}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-brand-900 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-accent-500 blur-3xl"></div>
+    </div>
+    <div class="relative max-w-4xl mx-auto px-5 md:px-6 py-14 md:py-20 text-center">
+      <h2 class="text-2xl md:text-4xl font-extrabold text-white tracking-tight">
+        Need {svc.title.toLowerCase()} today?
+      </h2>
+      <p class="mt-4 text-base md:text-lg text-brand-200 max-w-2xl mx-auto">
+        Call now — we answer the phone and can usually be at your door the same day.
+      </p>
+      <a
+        href={telHref}
+        class="mt-8 inline-flex items-center justify-center gap-2 bg-accent-500 hover:bg-accent-600 text-white font-bold px-8 py-4 rounded-xl transition shadow-xl shadow-accent-500/30 text-base md:text-lg active:scale-[0.98]"
+      >
+        Call {client.phone}
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

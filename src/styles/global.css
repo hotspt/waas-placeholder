@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50:  #eef4fb;
+  --color-brand-100: #d4e2f3;
+  --color-brand-200: #a8c5e7;
+  --color-brand-300: #7ba8db;
+  --color-brand-400: #4e8bcf;
+  --color-brand-500: #2f5a8e;
+  --color-brand-600: #24446e;
+  --color-brand-700: #1a2f4d;
+  --color-brand-800: #0f1f38;
+  --color-brand-900: #0a1628;
+
+  --color-accent-300: #ffb380;
+  --color-accent-400: #ff8533;
+  --color-accent-500: #ff6b1a;
+  --color-accent-600: #e05500;
+  --color-accent-700: #b84500;
+
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+
+  --breakpoint-3xl: 120rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-brand-900);
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Add bottom padding to account for sticky Call Now button on mobile */
+@media (max-width: 767px) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+}
+
+/* Blog post content typography */
+.blog-content h2 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--color-brand-900);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+@media (min-width: 768px) {
+  .blog-content h2 { font-size: 1.875rem; }
+}
+.blog-content h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-brand-900);
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.blog-content p {
+  margin-bottom: 1.25rem;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+@media (min-width: 768px) {
+  .blog-content p { font-size: 1.125rem; }
+}
+.blog-content ul, .blog-content ol {
+  margin-bottom: 1.25rem;
+  padding-left: 1.5rem;
+}
+.blog-content ul { list-style: disc; }
+.blog-content ol { list-style: decimal; }
+.blog-content li {
+  margin-bottom: 0.5rem;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+.blog-content a {
+  color: var(--color-accent-500);
+  text-decoration: underline;
+}
+.blog-content strong {
+  font-weight: 700;
+  color: var(--color-brand-900);
+}
+.blog-content blockquote {
+  border-left: 4px solid var(--color-accent-500);
+  padding-left: 1rem;
+  font-style: italic;
+  color: var(--color-brand-600);
+  margin: 1.5rem 0;
+}
