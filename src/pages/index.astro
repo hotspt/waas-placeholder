@@ -27,13 +27,11 @@ import { client, telHref, url } from '../lib/client';
         </div>
 
         <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white leading-[1.1] tracking-tight">
-          {client.address.city}'s most trusted<br />
-          <span class="text-accent-500">{client.industry} experts.</span>
+          {client.heroHeadline || `${client.address.city}'s most trusted ${client.industry.toLowerCase()} experts.`}
         </h1>
 
         <p class="mt-5 md:mt-6 text-base md:text-xl text-brand-200 leading-relaxed max-w-xl">
-          Fast, honest AC and heating service with upfront pricing and same-day availability.
-          When your system breaks, we show up and fix it right — the first time.
+          {client.heroSubtitle || `Fast, honest ${client.industry.toLowerCase()} service with upfront pricing and same-day availability. When something breaks, we show up and fix it right — the first time.`}
         </p>
 
         <div class="mt-7 md:mt-8 flex flex-col sm:flex-row gap-3 md:gap-4">
@@ -115,10 +113,10 @@ import { client, telHref, url } from '../lib/client';
       <div class="max-w-3xl mb-10 md:mb-12">
         <div class="text-accent-500 font-bold tracking-wide text-xs md:text-sm uppercase mb-3">What we do</div>
         <h2 class="text-2xl sm:text-3xl md:text-5xl font-extrabold text-brand-900 tracking-tight leading-tight">
-          Complete HVAC services for your home
+          {client.servicesHeadline || `Complete ${client.industry} services`}
         </h2>
         <p class="mt-4 text-base md:text-lg text-brand-600">
-          From emergency repairs to new installations, we handle everything heating and cooling.
+          {client.servicesSubhead || `From emergency calls to scheduled work, we handle everything ${client.industry.toLowerCase()}.`}
         </p>
       </div>
 
@@ -181,20 +179,19 @@ import { client, telHref, url } from '../lib/client';
       <div>
         <div class="text-accent-500 font-bold tracking-wide text-xs md:text-sm uppercase mb-3">Why choose us</div>
         <h2 class="text-2xl sm:text-3xl md:text-5xl font-extrabold text-brand-900 tracking-tight leading-tight">
-          The HVAC company {client.address.city} homeowners actually recommend.
+          {client.whyUsHeadline || `The ${client.industry.toLowerCase()} company ${client.address.city} actually recommends.`}
         </h2>
         <p class="mt-5 md:mt-6 text-base md:text-lg text-brand-600 leading-relaxed">
-          We built this company on a simple idea: show up when we say we will, charge what we quote,
-          and fix the problem the first time. No upsells, no runaround, no surprises on the invoice.
+          {client.whyUsBody || `We built this company on a simple idea: show up when we say we will, charge what we quote, and fix the problem the first time. No upsells, no runaround, no surprises.`}
         </p>
 
         <div class="mt-7 md:mt-8 space-y-3 md:space-y-4">
-          {[
-            'Free estimates on replacements and installations',
-            'Background-checked, factory-trained technicians',
-            'We service every major brand and system type',
-            'Financing available on qualifying installations',
-          ].map(item => (
+          {(client.whyUsBullets || [
+            'Free estimates on all work',
+            'Background-checked, trained professionals',
+            'We handle every major brand and system type',
+            'Financing available on qualifying work',
+          ]).map(item => (
             <div class="flex items-start gap-3">
               <div class="w-5 h-5 md:w-6 md:h-6 rounded-full bg-accent-500 flex items-center justify-center shrink-0 mt-0.5">
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">

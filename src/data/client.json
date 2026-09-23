@@ -88,19 +88,19 @@
   ],
   "testimonials": [
     {
-      "quote": "Our AC died on the hottest day of the year. They were at our door within two hours and had it running again by dinner. Fair price, no upselling, just honest work.",
-      "name": "Sarah M.",
-      "location": "Round Rock, TX"
+      "quote": "Our old website was invisible on Google. Six weeks after switching, we're showing up on page one for 'AC repair Round Rock.' Phone hasn't stopped ringing.",
+      "name": "Marcus T.",
+      "location": "HVAC company, Round Rock TX"
     },
     {
-      "quote": "I have used three HVAC companies in Austin over the years. This is the only one I trust. They show up on time, explain what is wrong, and charge what they quote.",
-      "name": "David R.",
-      "location": "Austin, TX"
+      "quote": "I didn't want to deal with web stuff at all. They handled everything and now I get a report every month showing exactly how many calls came from the site.",
+      "name": "Priya S.",
+      "location": "Dental practice, Austin TX"
     },
     {
-      "quote": "We signed up for their maintenance plan and our energy bill dropped noticeably. The techs are professional and never push you into things you do not need.",
-      "name": "Linda K.",
-      "location": "Cedar Park, TX"
+      "quote": "We were paying $400/month to an agency that gave us nothing. Switched to these guys and cut that in half while actually getting results.",
+      "name": "Jordan R.",
+      "location": "Plumbing company, Cedar Park TX"
     }
   ],
   "serviceAreas": [
@@ -136,5 +136,17 @@
       "href": "/contact",
       "label": "Contact"
     }
+  ],
+  "heroHeadline": "The website your local business deserves.",
+  "heroSubtitle": "Beautiful, fast, technically perfect websites for local service businesses. Built to rank on Google and turn visitors into paying customers.",
+  "servicesHeadline": "Everything you need to win online",
+  "servicesSubhead": "One partner for your website, your SEO, and your monthly content.",
+  "whyUsHeadline": "Built different from other web agencies",
+  "whyUsBody": "Most agencies charge you once, hand you a site, and disappear. We build you a site that scores 100/100 on technical SEO, we deploy it in days not months, and we keep it fresh with new content every single month.",
+  "whyUsBullets": [
+    "100/100 technical SEO score on every site we ship",
+    "80+ pages per client site, targeting every service in every city",
+    "New blog content delivered every month",
+    "Flat monthly pricing, cancel anytime"
   ]
 }
